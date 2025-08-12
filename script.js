@@ -91,10 +91,14 @@ async function streamClaudeResponse(query, model) {
     } catch (error) {
         hideTypingIndicator();
         console.error('Error streaming response:', error);
-        
+        // Di console browser
+        fetch('https://api.puter.com/whoami', {
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('puter.auth.token')}
+        }).then(r => r.json()).then(console.log);
+        let iduser=localStorage.getItem('puter.app.id');
         // Tampilkan pesan error ke user
         addMessage(
-            `Maaf, terjadi kesalahan: ${error.error.message}`, 
+            `Maaf ${iduser}, terjadi kesalahan: ${error.error.message}`, 
             false
         );
         
