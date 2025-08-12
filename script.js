@@ -7,7 +7,7 @@ const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
 const typingIndicator = document.getElementById('typingIndicator');
-const model={model: 'claude-sonnet-4', stream: true};
+const model={model: 'claude-opus-4', stream: true};//claude-opus-4    claude-sonnet-4
 // =============================================================================
 // MARKDOWN CONFIGURATION
 // =============================================================================
