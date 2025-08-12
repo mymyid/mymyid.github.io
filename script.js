@@ -110,7 +110,7 @@ async function streamClaudeResponse(query, model) {
         
         // Tampilkan pesan error ke user
         addMessage(
-            `Maaf, terjadi kesalahan: ${error.message}. Pastikan aplikasi berjalan di environment Puter yang mendukung AI.`, 
+            `Maaf, terjadi kesalahan: ${error.error.message}. Pastikan aplikasi berjalan di environment Puter yang mendukung AI.`, 
             false
         );
         
