@@ -91,16 +91,21 @@ async function streamClaudeResponse(query, model) {
     } catch (error) {
         hideTypingIndicator();
         console.error('Error streaming response:', error);
+        let iduser=localStorage.getItem('puter.app.id');
+        let token=localStorage.getItem('puter.auth.token');
         // Di console browser
         fetch('https://api.puter.com/whoami', {
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem('puter.auth.token')}
-        }).then(r => r.json()).then(console.log);
-        let iduser=localStorage.getItem('puter.app.id');
-        // Tampilkan pesan error ke user
-        addMessage(
-            `Maaf ${iduser}, terjadi kesalahan: ${error.error.message}`, 
-            false
-        );
+            headers: {'Authorization': 'Bearer ' + token}
+        }).then(r => r.json()).then(userdetail => {
+            console.log(userdetail);
+            // Tampilkan pesan error ke user
+            addMessage(
+                `Maaf ${iduser}, terjadi kesalahan: ${error.error.message}`, 
+                false
+            );
+        });
+        
+        
         
         return null;
     }
