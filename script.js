@@ -61,17 +61,30 @@ async function streamClaudeResponse(query, model) {
     try {
         // Cek apakah puter tersedia
         if (typeof puter === 'undefined') {
+            console.log("js puter tidak terpanggil");
             throw new Error('Puter AI tidak tersedia. Pastikan aplikasi berjalan di environment Puter.');
         }
-
+        console.log("js puter ada terpanggil");
         showTypingIndicator();
         
         const response = await puter.ai.chat(query, model);
         hideTypingIndicator();
+
+        // Cek jika response null/undefined
+        if (!response) {
+            throw new Error('No response received from API');
+        }
         
         // Buat message container untuk streaming
         const messageElement = addMessage('', false, true);
         let fullText = '';
+
+        // Cek apakah response error dari api puter 
+        if (!response.success) {
+            console.log("API error response");
+            console.log(response);
+            throw new Error(response.error?.message || 'API request failed');
+        }
         
         for await (const part of response) {
             if (part.text) {
@@ -118,6 +131,7 @@ async function sendMessage() {
     chatInput.style.height = 'auto';
     
     // Kirim ke Puter AI dan stream response
+    console.log("Kirim ke Puter AI dan stream response");
     await streamClaudeResponse(message,model);
     
     // Re-enable input
