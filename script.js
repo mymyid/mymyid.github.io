@@ -69,27 +69,11 @@ async function streamClaudeResponse(query, model) {
         
         const response = await puter.ai.chat(query, model);
         hideTypingIndicator();
-
-        // Cek jika response null/undefined
-        console.log("Cek jika response null/undefined");
-        console.log(response);
-        if (!response) {
-            throw new Error('No response received from API');
-        }
-        
         
         // Buat message container untuk streaming
         const messageElement = addMessage('', false, true);
         let fullText = '';
 
-        // Cek apakah response error dari api puter 
-        console.log("Cek apakah response error dari api puter ");
-        if (!response.success) {
-            console.log("API error response");
-            console.log(response);
-            throw new Error(response.error?.message || 'API request failed');
-        }
-        
         for await (const part of response) {
             if (part.text) {
                 fullText += part.text;
@@ -110,7 +94,7 @@ async function streamClaudeResponse(query, model) {
         
         // Tampilkan pesan error ke user
         addMessage(
-            `Maaf, terjadi kesalahan: ${error.error.message}. Pastikan aplikasi berjalan di environment Puter yang mendukung AI.`, 
+            `Maaf, terjadi kesalahan: ${error.error.message}`, 
             false
         );
         
