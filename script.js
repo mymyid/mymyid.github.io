@@ -108,7 +108,7 @@ function scrollToBottom() {
 // PUTER AI INTEGRATION
 // =============================================================================
 
-async function streamClaudeResponse(query, model = 'claude-3-haiku-20240307') {
+async function streamClaudeResponse(query, model) {
     try {
         // Cek apakah puter tersedia
         if (typeof puter === 'undefined') {
