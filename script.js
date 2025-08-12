@@ -74,12 +74,14 @@ async function streamClaudeResponse(query, model) {
         if (!response) {
             throw new Error('No response received from API');
         }
+        console.log(response);
         
         // Buat message container untuk streaming
         const messageElement = addMessage('', false, true);
         let fullText = '';
 
         // Cek apakah response error dari api puter 
+        console.log("Cek apakah response error dari api puter ");
         if (!response.success) {
             console.log("API error response");
             console.log(response);
