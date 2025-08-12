@@ -71,6 +71,7 @@ async function streamClaudeResponse(query, model) {
         hideTypingIndicator();
 
         // Cek jika response null/undefined
+        console.log("Cek jika response null/undefined");
         console.log(response);
         if (!response) {
             throw new Error('No response received from API');
