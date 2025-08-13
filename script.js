@@ -13,7 +13,7 @@ const model={model: 'claude-opus-4', stream: true};//claude-opus-4    claude-son
 
 //Cek authentikasi
 //if (!isAuthenticated()) {
-if (!handleAuthReturn()) {
+if (!isAuthenticated()) {
     // Redirect ke login
     await puter.auth.signIn();
 }
