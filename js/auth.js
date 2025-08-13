@@ -95,6 +95,32 @@ export function logoutUser() {
     }
 }
 
+export function signInWithRedirect() {
+    const returnUrl = window.location.href;
+    const authUrl = `https://puter.com/login?redirect_uri=${encodeURIComponent(returnUrl)}`;
+    
+    console.log('Redirecting to Puter login...');
+    window.location.href = authUrl;
+}
+
+// Handle return dari redirect
+export function handleAuthReturn() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    
+    if (token) {
+        localStorage.setItem('puter.auth.token', token);
+        puter.setAuthToken(token);
+        
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+        
+        console.log('Authentication successful');
+        return true;
+    }
+    
+    return false;
+}
 
 
 

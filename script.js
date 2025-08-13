@@ -1,5 +1,5 @@
 import {addJS,setInnerText,onClick} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
-import {isAuthenticated,loginUser,getUserInfo,logoutUser} from "/js/auth.js";
+import {isAuthenticated,signInWithRedirect,getUserInfo,logoutUser} from "/js/auth.js";
 
 await addJS("https://js.puter.com/v2/");
 
@@ -14,7 +14,7 @@ const model={model: 'claude-opus-4', stream: true};//claude-opus-4    claude-son
 //Cek authentikasi
 if (!isAuthenticated()) {
     // Redirect ke login
-    loginUser();
+    signInWithRedirect();
 }
 
 try {
