@@ -1,4 +1,5 @@
 import {addJS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
+import {isAuthenticated,loginUser,getUserInfo,logoutUser} from "/js/auth.js";
 
 await addJS("https://js.puter.com/v2/");
 
@@ -8,6 +9,25 @@ const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
 const typingIndicator = document.getElementById('typingIndicator');
 const model={model: 'claude-opus-4', stream: true};//claude-opus-4    claude-sonnet-4
+
+
+//Cek authentikasi
+if (!isAuthenticated()) {
+    // Redirect ke login
+    loginUser();
+}
+
+try {
+    const user = await getUserInfo();
+    if (user) {
+        console.log(user);
+    }
+} catch (error) {
+    // Token invalid, logout
+    console.log("Token invalid, logout");
+    logoutUser();
+}
+    
 
 // Auto-resize textarea
 chatInput.addEventListener('input', function() {
