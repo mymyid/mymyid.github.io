@@ -1,4 +1,4 @@
-import {addJS,setInnerText} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
+import {addJS,setInnerText,onClick} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
 import {isAuthenticated,loginUser,getUserInfo,logoutUser} from "/js/auth.js";
 
 await addJS("https://js.puter.com/v2/");
@@ -38,6 +38,8 @@ chatInput.addEventListener('input', function() {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 120) + 'px';
 });
+//ketika di klik
+onClick("sendButton",sendMessage);
 
 // Send message on Enter (but allow Shift+Enter for new line)
 chatInput.addEventListener('keydown', function(e) {
