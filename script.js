@@ -1,4 +1,4 @@
-import {addJS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
+import {addJS,setInnerText} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.8/element.min.js";
 import {isAuthenticated,loginUser,getUserInfo,logoutUser} from "/js/auth.js";
 
 await addJS("https://js.puter.com/v2/");
@@ -21,6 +21,8 @@ try {
     const user = await getUserInfo();
     if (user) {
         console.log(user);
+        setInnerText("title", user.username);
+        setInnerText("subtitle",user.uuid);
     }
 } catch (error) {
     // Token invalid, logout
