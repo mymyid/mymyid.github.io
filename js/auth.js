@@ -100,26 +100,6 @@ export function logoutUser() {
     }
 }
 
-export async function authGuard(authResponseFunction){
-    if (!isAuthenticated()) {
-            // Redirect ke login
-            loginUser();
-            return false;
-        }
-        
-        try {
-            const user = await getUserInfo();
-            if (user) {
-                authResponseFunction(user);
-                return true;
-            }
-        } catch (error) {
-            // Token invalid, logout
-            logoutUser();
-            return false;
-        }
-    }
-}
 
 
 
