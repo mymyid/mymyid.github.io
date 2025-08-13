@@ -23,6 +23,8 @@ try {
         console.log(user);
         setInnerText("title", user.username);
         setInnerText("subtitle",user.uuid);
+        setInnerText("titlein",user.referral_code);
+        setInnerText("subtitlein",user.app_name);
     }
 } catch (error) {
     // Token invalid, logout
