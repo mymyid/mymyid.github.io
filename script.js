@@ -64,7 +64,7 @@ function addMessage(content, isUser = false, isStreaming = false) {
         messageContent.id = 'streaming-message';
     }
     
-    messageContent.textContent = content;
+    messageContent.innerHTML = content;
     
     messageDiv.appendChild(avatar);
     messageDiv.appendChild(messageContent);
@@ -108,7 +108,7 @@ async function streamClaudeResponse(query, model) {
         for await (const part of response) {
             if (part.text) {
                 fullText += part.text;
-                messageElement.textContent = fullText;
+                messageElement.innerHTML = fullText;
                 scrollToBottom();
                 
                 // Optional: tambahkan delay untuk efek typing yang lebih smooth
