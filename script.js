@@ -15,7 +15,7 @@ const model={model: 'claude-opus-4', stream: true};//claude-opus-4    claude-son
 //if (!isAuthenticated()) {
 if (!handleAuthReturn()) {
     // Redirect ke login
-    signInWithRedirect();
+    await puter.auth.signIn();
 }
 
 try {
