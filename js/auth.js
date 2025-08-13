@@ -87,11 +87,6 @@ export function logoutUser() {
         // 🔧 PERBAIKAN: Optional reload - biarkan developer yang tentukan
         // window.location.reload();
         
-        // Callback jika ada
-        if (typeof onLogoutSuccess === 'function') {
-            onLogoutSuccess();
-        }
-        
         return true;
         
     } catch (error) {

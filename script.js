@@ -132,6 +132,8 @@ async function streamClaudeResponse(query, model) {
                 `Maaf ${iduser}, terjadi kesalahan: ${error.error.message}`, 
                 false
             );
+            console.log("user logout");
+            logoutUser();
         });
         
         
